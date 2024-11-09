@@ -89,8 +89,8 @@ def draw_FFT_spectrum(sp, fs = 48000.0, level = False, draw_range = 60.0, real_w
     ''' 振幅スペクトル '''
     ytitle = 'Amplitude (arb.)'
     
-    if (level == True):                                            # 縦軸が相対レベル (dB) のグラフを描く場合は，
-        amp = amp + np.finfo(np.float).eps                             # 振幅が 0 の場合に log の計算でエラーを出さないよう計算機イプシロンを加えます。
+    if (level == True):                                                        # 縦軸が相対レベル (dB) のグラフを描く場合は，
+        amp = amp + np.finfo(np.float64).eps                                   # 振幅が 0 の場合に log の計算でエラーを出さないよう計算機イプシロンを加えます。
         amp = 20.0 * np.log10(np.abs(amp[0:f_number]/np.max(amp[0:f_number]))) # 最大振幅を 0 dB とした相対レベルを計算します。
         # 描画の範囲を draw_range という引数で与えてあり，デフォルト値を 60 dB （マスキングを考慮した聴覚のダイナミックレンジ程度）までとします
         amp = amp + draw_range       # 関数 stem による描画の都合上，相対レベルに その数値を加えておきます。
@@ -103,7 +103,7 @@ def draw_FFT_spectrum(sp, fs = 48000.0, level = False, draw_range = 60.0, real_w
         _called_first = False
     
     if (stem == True):
-        _ax1_for_FFTspectrum.stem(frequency[0:f_number], amp[0: f_number], use_line_collection=True)
+        _ax1_for_FFTspectrum.stem(frequency[0:f_number], amp[0: f_number])
     else:
         _ax1_for_FFTspectrum.plot(frequency[0:f_number], amp[0: f_number], color = color)
     if (xtitle == 'Normarized angular frequency (rad)'):
