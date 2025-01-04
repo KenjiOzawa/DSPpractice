@@ -32,7 +32,7 @@ def plot_wave(time, amplitude, xtitle = 'Time (s)', ytitle = 'Amplitude (arb.)',
     if (stem == False):
         plt.plot(time, amplitude, color = color, marker = marker, linestyle = linestyle, label = legend)
     else:
-        plt.stem(time, amplitude, label = legend, use_line_collection = True)
+        plt.stem(time, amplitude, label = legend)
 
     if (legend != ''):
         plt.legend()
@@ -128,7 +128,7 @@ def draw_FFT_spectrum(sp, fs = 48000.0, level = False, draw_range = 60.0, real_w
     ytitle = 'Phase (rad)'
     plt.subplot(2, 1, 2)
     if (stem == True):
-        plt.stem(frequency[0:f_number], phi[0: f_number], use_line_collection=True)
+        plt.stem(frequency[0:f_number], phi[0: f_number])
     else:
         plt.plot(frequency[0:f_number], phi[0: f_number])
 
